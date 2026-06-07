@@ -14,7 +14,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     private val database = PoemDatabase.getInstance(application)
     private val repository = PoemRepository(database.poemDao(), database.favoriteDao())
-    val billingManager = BillingManager(application)
+    val billingManager by lazy { BillingManager(application) }
 
     // All poems
     val allPoems: StateFlow<List<Poem>> = repository.getAllPoems()
@@ -62,12 +62,19 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val currentNote: StateFlow<String> = _currentNote.asStateFlow()
 
     // Premium status
-    val isPremium: StateFlow<Boolean> = billingManager.isPremium
+    val isPremium: StateFlow<Boolean> by lazy { billingManager.isPremium }
 
     init {
-        billingManager.startConnection()
         loadTodayPoem()
         loadFavoriteCount()
+        // Delay billing init to avoid crash on devices without Google Play
+        viewModelScope.launch {
+            try {
+                billingManager.startConnection()
+            } catch (e: Exception) {
+                // Ignore billing errors on devices without Google Play
+            }
+        }
     }
 
     private fun loadFavoriteCount() {
