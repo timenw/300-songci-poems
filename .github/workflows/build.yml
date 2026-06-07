@@ -23,25 +23,30 @@ jobs:
         run: chmod +x gradlew
 
       - name: Build Debug APK
-        run: ./gradlew assembleDebug --info 2>&1 | tee build.log; echo "GRADLE_EXIT=$?"
+        run: ./gradlew :app:assembleDebug --info > /tmp/build.log 2>&1; echo "EXIT=$?"
 
-      - name: Show build results
+      - name: Show build log tail
         if: always()
         run: |
-          echo "=== BUILD LOG (last 50 lines) ==="
-          tail -50 build.log 2>/dev/null || echo "No build.log"
-          echo "=== APK files ==="
-          find . -name "*.apk" -type f 2>/dev/null || echo "No .apk found"
-          echo "=== app/build tree ==="
-          find app/build -maxdepth 4 -type f 2>/dev/null | head -50
-          echo "=== app/build/outputs ==="
-          ls -laR app/build/outputs/ 2>/dev/null || echo "No outputs dir"
+          echo "=== LAST 60 LINES ==="
+          tail -60 /tmp/build.log
+          echo "=== APK SEARCH ==="
+          find . -name "*.apk" 2>/dev/null
+          echo "=== BUILD OUTPUTS DIR ==="
+          ls -la app/build/outputs/ 2>/dev/null || echo "No outputs dir"
 
-      - name: Upload Debug APK
+      - name: Upload build log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-log
+          path: /tmp/build.log
+          retention-days: 1
+
+      - name: Upload APK
         if: success()
         uses: actions/upload-artifact@v4
         with:
           name: debug-apk
           path: "**/*.apk"
           retention-days: 30
-          if-no-files-found: warn
