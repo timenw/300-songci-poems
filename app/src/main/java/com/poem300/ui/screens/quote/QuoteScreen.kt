@@ -326,7 +326,7 @@ private fun sharePoemCard(context: Context, poem: Poem, style: Int) {
         // Save and share
         val cachePath = File(context.cacheDir, "shared_poems")
         cachePath.mkdirs()
-        val file = File(cachePath, "poem_${poem.id}.png")
+        val file = File(cachePath, "poem_${poem.id!!}.png")
         FileOutputStream(file).use { bitmap.compress(Bitmap.CompressFormat.PNG, 100, it) }
 
         val uri = FileProvider.getUriForFile(context, "${context.packageName}.fileprovider", file)

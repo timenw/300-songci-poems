@@ -170,7 +170,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun toggleTodayFavorite() {
-        _todayPoem.value?.let { toggleFavorite(it.id) }
+        _todayPoem.value?.let { toggleFavorite(it.id!!) }
     }
 
     fun updateNote(poemId: Int, note: String) {

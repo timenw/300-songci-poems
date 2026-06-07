@@ -64,7 +64,7 @@ fun Poem300App(billingManager: BillingManager) {
             val favIds by vm.favoriteIds.collectAsState()
             val isPremium by vm.isPremium.collectAsState()
             val favoriteCount by vm.favoriteCount.collectAsState()
-            val isFavorite = todayPoem?.let { favIds.contains(it.id) } ?: false
+            val isFavorite = todayPoem?.let { favIds.contains(it.id!!) } ?: false
 
             HomeScreen(
                 todayPoem = todayPoem,
@@ -72,7 +72,7 @@ fun Poem300App(billingManager: BillingManager) {
                 isPremium = isPremium,
                 favoriteCount = favoriteCount,
                 onFavoriteClick = { vm.toggleTodayFavorite() },
-                onPoemClick = { todayPoem?.let { navController.navigate("read/${it.id}") } },
+                onPoemClick = { todayPoem?.let { navController.navigate("read/${it.id!!}") } },
                 onRefreshPoem = { vm.refreshDailyPoem() },
                 onNavigateToBrowse = { navController.navigate("browse") },
                 onNavigateToSearch = { navController.navigate("search") },

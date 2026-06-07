@@ -133,12 +133,12 @@ fun SearchScreen(
                             modifier = Modifier.padding(bottom = 4.dp)
                         )
                     }
-                    items(searchResults, key = { it.id }) { poem ->
+                    items(searchResults, key = { it.id!! }) { poem ->
                         PoemCard(
                             poem = poem,
-                            isFavorite = favoriteIds.contains(poem.id),
-                            onFavoriteClick = { onFavoriteClick(poem.id) },
-                            onClick = { onPoemClick(poem.id) }
+                            isFavorite = favoriteIds.contains(poem.id!!),
+                            onFavoriteClick = { onFavoriteClick(poem.id!!) },
+                            onClick = { onPoemClick(poem.id!!) }
                         )
                     }
                 }
