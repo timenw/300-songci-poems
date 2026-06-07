@@ -50,6 +50,13 @@ fun ReadScreen(
     var downloadProgress by remember { mutableStateOf(0f) }
     var downloadError by remember { mutableStateOf<String?>(null) }
 
+    // Refresh hasAudio state when dialog closes (after download)
+    LaunchedEffect(showDownloadDialog) {
+        if (!showDownloadDialog) {
+            hasAudio = audioManager.hasAudio(poem.id ?: 0)
+        }
+    }
+
     DisposableEffect(Unit) {
         onDispose {
             audioManager.release()
@@ -92,7 +99,8 @@ fun ReadScreen(
                                 downloadProgress = if (total > 0) downloaded.toFloat() / total else 0f
                             }.fold(
                                 onSuccess = {
-                                    hasAudio = audioManager.hasAudio(poem.id ?: 0)
+                                    val pid = poem.id ?: 0
+                                    hasAudio = audioManager.hasAudio(pid)
                                     isDownloading = false
                                     showDownloadDialog = false
                                 },
