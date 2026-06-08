@@ -47,17 +47,38 @@ class AudioManager(private val context: Context) {
     ): Result<Unit> = withContext(Dispatchers.IO) {
         try {
             Log.d(TAG, "Downloading audio pack from $AUDIO_ZIP_URL")
-            val url = URL(AUDIO_ZIP_URL)
-            val connection = url.openConnection() as HttpURLConnection
-            connection.connectTimeout = 30000
-            connection.readTimeout = 60000
-            connection.requestMethod = "GET"
-            connection.connect()
+            val zipFile = File(context.cacheDir, ZIP_FILE)
 
-            val totalSize = connection.contentLength.toLong()
+            // Follow redirects manually (GitHub redirects to different host)
+            var currentUrl = AUDIO_ZIP_URL
+            var redirectCount = 0
+            var connection: HttpURLConnection? = null
+            while (redirectCount < 10) {
+                val url = URL(currentUrl)
+                connection = url.openConnection() as HttpURLConnection
+                connection.connectTimeout = 30000
+                connection.readTimeout = 60000
+                connection.requestMethod = "GET"
+                connection.instanceFollowRedirects = true
+                connection.connect()
+                val code = connection.responseCode
+                if (code == HttpURLConnection.HTTP_OK) break
+                if (code in 300..399) {
+                    val location = connection.getHeaderField("Location")
+                    if (location != null) {
+                        Log.d(TAG, "Redirect $code -> $location")
+                        currentUrl = location
+                        redirectCount++
+                        connection.disconnect()
+                        continue
+                    }
+                }
+                throw Exception("HTTP $code: ${connection.responseMessage}")
+            }
+
+            val totalSize = connection!!.contentLength.toLong()
             Log.d(TAG, "Audio pack size: ${totalSize / 1024}KB")
 
-            val zipFile = File(context.cacheDir, ZIP_FILE)
             connection.inputStream.use { input ->
                 FileOutputStream(zipFile).use { output ->
                     val buffer = ByteArray(8192)
@@ -72,7 +93,13 @@ class AudioManager(private val context: Context) {
             }
             connection.disconnect()
 
-            Log.d(TAG, "Download complete, extracting...")
+            Log.d(TAG, "Download complete, size=${zipFile.length()} bytes, extracting...")
+
+            // Verify it's actually a ZIP, not an HTML redirect page
+            if (zipFile.length() < 1000) {
+                throw Exception("Downloaded file too small (${zipFile.length()} bytes), likely not a ZIP")
+            }
+
             extractZip(zipFile)
             zipFile.delete()
 
