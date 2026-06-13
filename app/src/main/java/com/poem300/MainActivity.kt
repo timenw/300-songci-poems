@@ -26,32 +26,22 @@ import com.poem300.ui.theme.Poem300Theme
 
 class MainActivity : ComponentActivity() {
 
-    private lateinit var billingManager: BillingManager
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // enableEdgeToEdge() requires API 30+; use WindowCompat for broader compatibility
         WindowCompat.setDecorFitsSystemWindows(window, false)
-
-        billingManager = BillingManager(application)
-        billingManager.startConnection()
 
         setContent {
             Poem300Theme {
-                Poem300App(billingManager)
+                Poem300App()
             }
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        billingManager.endConnection()
     }
 }
 
 @Composable
-fun Poem300App(billingManager: BillingManager) {
+fun Poem300App() {
     val vm: MainViewModel = viewModel()
+    val billingManager = vm.billingManager
     val navController = rememberNavController()
     val snackbarHostState = remember { SnackbarHostState() }
     val showPremiumPrompt by vm.showPremiumPrompt.collectAsState()

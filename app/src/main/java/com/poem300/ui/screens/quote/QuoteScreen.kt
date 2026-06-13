@@ -341,10 +341,29 @@ private fun sharePoemCard(context: Context, poem: Poem, style: Int, isPremium: B
         // Save and share
         val cachePath = File(context.cacheDir, "shared_poems")
         cachePath.mkdirs()
-        val file = File(cachePath, "poem_${poem.id!!}.png")
+        val poemIdForFile = poem.id ?: 0
+        val file = File(cachePath, "poem_${poemIdForFile}.png")
         FileOutputStream(file).use { bitmap.compress(Bitmap.CompressFormat.PNG, 100, it) }
 
-        val uri = FileProvider.getUriForFile(context, "${context.packageName}.fileprovider", file)
+        val uri = try {
+            FileProvider.getUriForFile(context, "${context.packageName}.fileprovider", file)
+        } catch (e: IllegalArgumentException) {
+            // Fallback: use MediaStore for Android 10+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                val values = ContentValues().apply {
+                    put(MediaStore.Images.Media.DISPLAY_NAME, "poem_${poemIdForFile}.png")
+                    put(MediaStore.Images.Media.MIME_TYPE, "image/png")
+                    put(MediaStore.Images.Media.RELATIVE_PATH, Environment.DIRECTORY_PICTURES + "/300TangPoems")
+                }
+                context.contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)?.also { uri ->
+                    context.contentResolver.openOutputStream(uri)?.use { bitmap.compress(Bitmap.CompressFormat.PNG, 100, it) }
+                }
+            } else null
+        }
+        if (uri == null) {
+            Toast.makeText(context, "Couldn't save image", Toast.LENGTH_SHORT).show()
+            return
+        }
         val shareIntent = Intent(Intent.ACTION_SEND).apply {
             type = "image/png"
             putExtra(Intent.EXTRA_STREAM, uri)
