@@ -30,14 +30,19 @@ class BillingManager(private val application: Application) : PurchasesUpdatedLis
         const val SKU_PREMIUM = "poem_premium_lifetime"
 
         // Debug build auto-enables test mode (no real purchase needed)
-        val isDebugBuild: Boolean = android.os.Build.FINGERPRINT?.contains("generic") == true
-                || try { Class.forName("com.poem300.BuildConfig").getField("DEBUG").get(null) as Boolean } catch (_: Exception) { false }
+        val isDebugBuild: Boolean = try {
+            val clazz = Class.forName("com.poem300.BuildConfig")
+            clazz.getField("DEBUG").get(null) as Boolean
+        } catch (_: Exception) {
+            false
+        }
     }
 
     init {
         if (isDebugBuild) {
             _isTestMode.value = true
-            Log.d(TAG, "Debug build detected - test mode available")
+            _isPremium.value = true
+            Log.d(TAG, "Debug build detected - test mode + premium auto-enabled")
         }
     }
 

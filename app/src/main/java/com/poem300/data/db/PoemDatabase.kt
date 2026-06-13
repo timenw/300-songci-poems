@@ -83,7 +83,6 @@ abstract class PoemDatabase : RoomDatabase() {
                     "poem300.db"
                 )
                     .createFromAsset("poems.db")
-                    .fallbackToDestructiveMigration()
                     .build()
                 INSTANCE = instance
                 instance

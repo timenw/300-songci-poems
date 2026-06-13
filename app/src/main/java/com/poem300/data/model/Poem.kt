@@ -24,8 +24,8 @@ data class Poem(
 
 @Entity(tableName = "favorites")
 data class Favorite(
-    @PrimaryKey val poemId: Int?,                                       // DB: INTEGER PRIMARY KEY (notNull=false)
-    @ColumnInfo(defaultValue = "''") val note: String = "",             // DB: DEFAULT ''
-    @ColumnInfo(defaultValue = "'Default'") val groupName: String = "Default", // DB: DEFAULT 'Default'
-    @ColumnInfo(defaultValue = "0") val createdAt: Long = 0L            // DB: DEFAULT 0
+    @PrimaryKey @androidx.room.NonNull val poemId: Int,
+    @ColumnInfo(defaultValue = "") val note: String = "",
+    @ColumnInfo(defaultValue = "Default") val groupName: String = "Default",
+    @ColumnInfo(defaultValue = "0") val createdAt: Long = 0L
 )

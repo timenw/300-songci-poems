@@ -188,6 +188,7 @@ fun Poem300App(billingManager: BillingManager) {
                 onPoemClick = { navController.navigate("read/$it") },
                 onFavoriteClick = { vm.toggleFavorite(it) },
                 onBack = { navController.popBackStack() },
+                isFavoritesMode = true,
             )
         }
 

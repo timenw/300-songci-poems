@@ -26,13 +26,14 @@ fun SearchScreen(
     onPoemClick: (Int) -> Unit,
     onFavoriteClick: (Int) -> Unit,
     onBack: () -> Unit,
+    isFavoritesMode: Boolean = false,
 ) {
     var query by remember { mutableStateOf("") }
 
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { },
+                title = { Text(if (isFavoritesMode) "Favorites" else "Search") },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
                         Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
@@ -46,62 +47,67 @@ fun SearchScreen(
                 .fillMaxSize()
                 .padding(padding)
         ) {
-            // Search bar
-            OutlinedTextField(
-                value = query,
-                onValueChange = {
-                    query = it
-                    onSearch(it)
-                },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp, vertical = 8.dp),
-                placeholder = { Text("Search poems, poets, or lines...") },
-                leadingIcon = { Icon(Icons.Filled.Search, contentDescription = null) },
-                trailingIcon = {
-                    if (query.isNotEmpty()) {
-                        IconButton(onClick = {
-                            query = ""
-                            onSearch("")
-                        }) {
-                            Icon(Icons.Filled.Clear, contentDescription = "Clear")
+            // Search bar (only in search mode)
+            if (!isFavoritesMode) {
+                OutlinedTextField(
+                    value = query,
+                    onValueChange = {
+                        query = it
+                        onSearch(it)
+                    },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp, vertical = 8.dp),
+                    placeholder = { Text("Search poems, poets, or lines...") },
+                    leadingIcon = { Icon(Icons.Filled.Search, contentDescription = null) },
+                    trailingIcon = {
+                        if (query.isNotEmpty()) {
+                            IconButton(onClick = {
+                                query = ""
+                                onSearch("")
+                            }) {
+                                Icon(Icons.Filled.Clear, contentDescription = "Clear")
+                            }
                         }
-                    }
-                },
-                singleLine = true,
-                shape = RoundedCornerShape(12.dp)
-            )
+                    },
+                    singleLine = true,
+                    shape = RoundedCornerShape(12.dp)
+                )
+            }
 
             // Results
-            if (query.isEmpty()) {
-                // Empty state - show suggestions
+            val showResults = if (isFavoritesMode) searchResults.isNotEmpty() else query.isNotEmpty()
+
+            if (!showResults) {
+                // Empty state
                 Box(
                     modifier = Modifier.fillMaxSize(),
                     contentAlignment = Alignment.Center
                 ) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Icon(
-                            Icons.Filled.MenuBook,
+                            if (isFavoritesMode) Icons.Filled.FavoriteBorder else Icons.Filled.MenuBook,
                             contentDescription = null,
                             modifier = Modifier.size(64.dp),
                             tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.4f)
                         )
                         Spacer(modifier = Modifier.height(16.dp))
                         Text(
-                            text = "Search 300 Tang Poems",
+                            text = if (isFavoritesMode) "No favorites yet" else "Search 300 Tang Poems",
                             style = MaterialTheme.typography.titleMedium,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
-                            text = "Try: moon, Li Bai, spring, farewell...",
+                            text = if (isFavoritesMode) "Tap the heart icon on any poem to save it here"
+                                   else "Try: moon, Li Bai, spring, farewell...",
                             style = MaterialTheme.typography.bodyMedium,
                             fontStyle = FontStyle.Italic,
                             color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
                         )
                     }
                 }
-            } else if (searchResults.isEmpty()) {
+            } else if (!isFavoritesMode && searchResults.isEmpty()) {
                 Box(
                     modifier = Modifier.fillMaxSize(),
                     contentAlignment = Alignment.Center
@@ -127,7 +133,8 @@ fun SearchScreen(
                 ) {
                     item {
                         Text(
-                            text = "${searchResults.size} poem${if (searchResults.size != 1) "s" else ""} found",
+                            text = if (isFavoritesMode) "${searchResults.size} saved poem${if (searchResults.size != 1) "s" else ""}"
+                                   else "${searchResults.size} poem${if (searchResults.size != 1) "s" else ""} found",
                             style = MaterialTheme.typography.labelLarge,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                             modifier = Modifier.padding(bottom = 4.dp)
