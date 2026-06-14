@@ -122,8 +122,6 @@ dependencies {
     // === 广告 SDK ===
     // Google AdMob
     implementation("com.google.android.gms:play-services-ads:23.6.0")
-    // Pangle (穿山甲)
-    implementation("com.pangle.global:ads-sdk:6.5.1.2")
 
     // Testing
     testImplementation("junit:junit:4.13.2")

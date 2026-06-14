@@ -8,7 +8,3 @@
 # Google AdMob
 -keep class com.google.android.gms.ads.** { *; }
 -dontwarn com.google.android.gms.ads.**
-
-# Pangle (穿山甲)
--keep class com.pangle.global.** { *; }
--dontwarn com.pangle.global.**

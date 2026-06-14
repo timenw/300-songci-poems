@@ -19,10 +19,6 @@
         tools:targetApi="34">
 
         <!-- ===== 广告 App ID 配置 ===== -->
-        <!-- TODO: 注册穿山甲后填入真实 App ID -->
-        <meta-data
-            android:name="pangle_app_id"
-            android:value="YOUR_PANGLE_APP_ID" />
         <!-- TODO: 注册 AdMob 后填入真实 App ID -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
