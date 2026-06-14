@@ -112,8 +112,8 @@ dependencies {
     // Google Play Billing
     implementation("com.android.billingclient:billing-ktx:6.1.0")
 
-    // Google AdMob
-    implementation("com.google.android.gms:play-services-ads:22.6.0")
+    // Google AdMob - use lite version to avoid initialization crash
+    implementation("com.google.android.gms:play-services-ads-lite:22.6.0")
 
     // Lifecycle + ViewModel
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
