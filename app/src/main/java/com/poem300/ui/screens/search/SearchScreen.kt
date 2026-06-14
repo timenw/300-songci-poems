@@ -1,4 +1,4 @@
-package com.poem300.ui.screens.search
+package com.songci300.ui.screens.search
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.*
@@ -13,9 +13,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.dp
-import com.poem300.data.model.Poem
-import com.poem300.ui.components.PoemCard
-import com.poem300.ui.theme.*
+import com.songci300.data.model.Poem
+import com.songci300.ui.components.PoemCard
+import com.songci300.ui.theme.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -93,7 +93,7 @@ fun SearchScreen(
                         )
                         Spacer(modifier = Modifier.height(16.dp))
                         Text(
-                            text = if (isFavoritesMode) "No favorites yet" else "Search 300 Tang Poems",
+                            text = if (isFavoritesMode) "No favorites yet" else "Search 300 Song Ci",
                             style = MaterialTheme.typography.titleMedium,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )

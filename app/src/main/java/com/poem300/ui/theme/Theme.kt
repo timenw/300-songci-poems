@@ -1,4 +1,4 @@
-package com.poem300.ui.theme
+package com.songci300.ui.theme
 
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -42,7 +42,7 @@ private val PoemColorScheme = lightColorScheme(
 )
 
 @Composable
-fun Poem300Theme(content: @Composable () -> Unit) {
+fun SongCi300Theme(content: @Composable () -> Unit) {
     MaterialTheme(
         colorScheme = PoemColorScheme,
         typography = PoemTypography,

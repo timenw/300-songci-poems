@@ -1,4 +1,4 @@
-package com.poem300
+package com.songci300
 
 import android.os.Build
 import android.os.Bundle
@@ -14,15 +14,15 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavType
 import androidx.navigation.compose.*
 import androidx.navigation.navArgument
-import com.poem300.billing.BillingManager
-import com.poem300.ui.screens.browse.BrowseScreen
-import com.poem300.ui.screens.home.HomeScreen
-import com.poem300.ui.screens.read.ReadScreen
-import com.poem300.ui.screens.search.SearchScreen
-import com.poem300.ui.screens.settings.SettingsScreen
-import com.poem300.ui.screens.settings.PrivacyPolicyScreen
-import com.poem300.ui.screens.quote.QuoteScreen
-import com.poem300.ui.theme.Poem300Theme
+import com.songci300.billing.BillingManager
+import com.songci300.ui.screens.browse.BrowseScreen
+import com.songci300.ui.screens.home.HomeScreen
+import com.songci300.ui.screens.read.ReadScreen
+import com.songci300.ui.screens.search.SearchScreen
+import com.songci300.ui.screens.settings.SettingsScreen
+import com.songci300.ui.screens.settings.PrivacyPolicyScreen
+import com.songci300.ui.screens.quote.QuoteScreen
+import com.songci300.ui.theme.SongCi300Theme
 
 class MainActivity : ComponentActivity() {
 
@@ -31,15 +31,15 @@ class MainActivity : ComponentActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
         setContent {
-            Poem300Theme {
-                Poem300App()
+            SongCi300Theme {
+                SongCi300App()
             }
         }
     }
 }
 
 @Composable
-fun Poem300App() {
+fun SongCi300App() {
     val vm: MainViewModel = viewModel()
     val billingManager = vm.billingManager
     val navController = rememberNavController()

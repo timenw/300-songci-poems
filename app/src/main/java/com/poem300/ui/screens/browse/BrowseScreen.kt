@@ -1,4 +1,4 @@
-package com.poem300.ui.screens.browse
+package com.songci300.ui.screens.browse
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -14,9 +14,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.poem300.data.model.Poem
-import com.poem300.ui.components.PoemCard
-import com.poem300.ui.theme.*
+import com.songci300.data.model.Poem
+import com.songci300.ui.components.PoemCard
+import com.songci300.ui.theme.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

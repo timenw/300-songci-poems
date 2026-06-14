@@ -1,9 +1,9 @@
-package com.poem300.data.db
+package com.songci300.data.db
 
 import android.content.Context
 import androidx.room.*
-import com.poem300.data.model.Poem
-import com.poem300.data.model.Favorite
+import com.songci300.data.model.Poem
+import com.songci300.data.model.Favorite
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -80,7 +80,7 @@ abstract class PoemDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     PoemDatabase::class.java,
-                    "poem300.db"
+                    "songci300.db"
                 )
                     .createFromAsset("poems.db")
                     .build()

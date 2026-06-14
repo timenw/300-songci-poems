@@ -1,8 +1,0 @@
-local.properties
-.gradle/
-__pycache__/
-app/build/
-build/
-*.keystore
-*.jks
-app-debug.apk

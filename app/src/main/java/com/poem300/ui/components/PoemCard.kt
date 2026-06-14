@@ -1,4 +1,4 @@
-package com.poem300.ui.components
+package com.songci300.ui.components
 
 import androidx.compose.animation.*
 import androidx.compose.foundation.background
@@ -18,8 +18,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.poem300.data.model.Poem
-import com.poem300.ui.theme.*
+import com.songci300.data.model.Poem
+import com.songci300.ui.theme.*
 
 @Composable
 fun PoemCard(

@@ -1,4 +1,4 @@
-package com.poem300.ui.screens.read
+package com.songci300.ui.screens.read
 
 import androidx.compose.animation.*
 import androidx.compose.foundation.layout.*
@@ -17,9 +17,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.poem300.audio.AudioManager
-import com.poem300.data.model.Poem
-import com.poem300.ui.theme.*
+import com.songci300.audio.AudioManager
+import com.songci300.data.model.Poem
+import com.songci300.ui.theme.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

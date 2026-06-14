@@ -1,13 +1,13 @@
-package com.poem300
+package com.songci300
 
 import android.app.Application
 import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import com.poem300.billing.BillingManager
-import com.poem300.data.db.PoemDatabase
-import com.poem300.data.model.Poem
-import com.poem300.data.repository.PoemRepository
+import com.songci300.billing.BillingManager
+import com.songci300.data.db.PoemDatabase
+import com.songci300.data.model.Poem
+import com.songci300.data.repository.PoemRepository
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat

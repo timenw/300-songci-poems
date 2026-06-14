@@ -1,4 +1,4 @@
-package com.poem300.ui.screens.home
+package com.songci300.ui.screens.home
 
 import androidx.compose.animation.*
 import androidx.compose.foundation.layout.*
@@ -15,9 +15,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.poem300.data.model.Poem
-import com.poem300.ui.components.PoemCard
-import com.poem300.ui.theme.*
+import com.songci300.data.model.Poem
+import com.songci300.ui.components.PoemCard
+import com.songci300.ui.theme.*
 import java.util.*
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -47,7 +47,7 @@ fun HomeScreen(
                 title = {
                     Column {
                         Text(
-                            text = "300 Tang Poems",
+                            text = "300 Song Ci",
                             style = MaterialTheme.typography.titleLarge,
                             fontWeight = FontWeight.Normal
                         )
@@ -207,11 +207,11 @@ private fun getDailyGreeting(): String {
     val greetings = listOf(
         "A poem a day keeps the noise away.",
         "Let ancient words speak to modern hearts.",
-        "Today, let a Tang poet be your guide.",
+        "Today, let a Song poet be your guide.",
         "In every poem, a world awaits.",
         "Words written a thousand years ago, still breathing today.",
         "Find your moment of stillness here.",
-        "The poets of the Tang Dynasty are waiting for you.",
+        "The poets of the Song Dynasty are waiting for you.",
         "One poem. One breath. One moment of peace.",
     )
     val calendar = Calendar.getInstance()

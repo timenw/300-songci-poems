@@ -1,9 +1,9 @@
-package com.poem300.data.repository
+package com.songci300.data.repository
 
-import com.poem300.data.db.FavoriteDao
-import com.poem300.data.db.PoemDao
-import com.poem300.data.model.Favorite
-import com.poem300.data.model.Poem
+import com.songci300.data.db.FavoriteDao
+import com.songci300.data.db.PoemDao
+import com.songci300.data.model.Favorite
+import com.songci300.data.model.Poem
 import kotlinx.coroutines.flow.Flow
 
 class PoemRepository(

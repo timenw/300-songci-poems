@@ -1,4 +1,4 @@
-package com.poem300.ui.screens.settings
+package com.songci300.ui.screens.settings
 
 import android.webkit.WebView
 import android.webkit.WebViewClient

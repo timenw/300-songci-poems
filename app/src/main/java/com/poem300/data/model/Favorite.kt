@@ -1,4 +1,4 @@
-package com.poem300.data.model
+package com.songci300.data.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

@@ -1,4 +1,4 @@
-package com.poem300.billing
+package com.songci300.billing
 
 import android.app.Application
 import android.util.Log
@@ -31,7 +31,7 @@ class BillingManager(private val application: Application) : PurchasesUpdatedLis
 
         // Debug build auto-enables test mode (no real purchase needed)
         val isDebugBuild: Boolean = try {
-            val clazz = Class.forName("com.poem300.BuildConfig")
+            val clazz = Class.forName("com.songci300.BuildConfig")
             clazz.getField("DEBUG").get(null) as Boolean
         } catch (_: Exception) {
             false

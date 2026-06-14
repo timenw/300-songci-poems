@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.poem300"
+    namespace = "com.songci300"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.poem300"
+        applicationId = "com.songci300"
         minSdk = 26
         targetSdk = 34
         versionCode = 1
@@ -25,9 +25,9 @@ android {
     signingConfigs {
         create("release") {
             storeFile = file("release.keystore")
-            storePassword = "poem300pass"
-            keyAlias = "poem300"
-            keyPassword = "poem300pass"
+            storePassword = "songci300pass"
+            keyAlias = "songci300"
+            keyPassword = "songci300pass"
         }
     }
 

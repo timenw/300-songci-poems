@@ -1,4 +1,4 @@
-package com.poem300.ui.screens.quote
+package com.songci300.ui.screens.quote
 
 import android.content.ContentValues
 import android.content.Context
@@ -32,8 +32,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.FileProvider
-import com.poem300.data.model.Poem
-import com.poem300.ui.theme.*
+import com.songci300.data.model.Poem
+import com.songci300.ui.theme.*
 import java.io.File
 import java.io.FileOutputStream
 
@@ -215,7 +215,7 @@ fun PoemQuoteCard(
 
                 // App branding
                 Text(
-                    text = "300 Tang Poems",
+                    text = "300 Song Ci",
                     fontSize = 10.sp,
                     color = textColor.copy(alpha = 0.3f),
                     textAlign = TextAlign.Center
@@ -322,7 +322,7 @@ private fun sharePoemCard(context: Context, poem: Poem, style: Int, isPremium: B
             color = (textColor and 0xFFFFFF) or (0x4D shl 24) // 30% alpha
             textSize = 24f
         }
-        canvas.drawText("300 Tang Poems", width / 2f, y, paint)
+        canvas.drawText("300 Song Ci", width / 2f, y, paint)
 
         // Watermark for free users
         if (!isPremium) {
@@ -335,7 +335,7 @@ private fun sharePoemCard(context: Context, poem: Poem, style: Int, isPremium: B
             canvas.drawText("Get Premium — No Watermark", width / 2f, wmY, paint)
             paint.textSize = 22f
             paint.typeface = Typeface.DEFAULT
-            canvas.drawText("300 Tang Poems · $0.99 one time", width / 2f, wmY + 36f, paint)
+            canvas.drawText("300 Song Ci · $0.99 one time", width / 2f, wmY + 36f, paint)
         }
 
         // Save and share
@@ -353,7 +353,7 @@ private fun sharePoemCard(context: Context, poem: Poem, style: Int, isPremium: B
                 val values = ContentValues().apply {
                     put(MediaStore.Images.Media.DISPLAY_NAME, "poem_${poemIdForFile}.png")
                     put(MediaStore.Images.Media.MIME_TYPE, "image/png")
-                    put(MediaStore.Images.Media.RELATIVE_PATH, Environment.DIRECTORY_PICTURES + "/300TangPoems")
+                    put(MediaStore.Images.Media.RELATIVE_PATH, Environment.DIRECTORY_PICTURES + "/300SongPoems")
                 }
                 context.contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)?.also { uri ->
                     context.contentResolver.openOutputStream(uri)?.use { bitmap.compress(Bitmap.CompressFormat.PNG, 100, it) }

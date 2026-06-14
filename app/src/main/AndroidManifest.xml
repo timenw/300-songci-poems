@@ -11,7 +11,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Poem300"
+        android:theme="@style/Theme.SongCi300"
         tools:targetApi="34">
 
         <!-- AdMob App ID (required for AdMob SDK) -->
@@ -34,7 +34,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.Poem300" />
+            android:theme="@style/Theme.SongCi300" />
 
         <!-- FileProvider for sharing quote cards -->
         <provider

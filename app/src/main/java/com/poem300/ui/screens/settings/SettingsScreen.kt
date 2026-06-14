@@ -1,4 +1,4 @@
-package com.poem300.ui.screens.settings
+package com.songci300.ui.screens.settings
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -11,7 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.poem300.ui.theme.*
+import com.songci300.ui.theme.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -169,7 +169,7 @@ fun SettingsScreen(
                         )
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
-                            text = "300 Tang Poems brings the golden age of Chinese poetry to your pocket. Each poem is carefully translated and annotated for modern readers.",
+                            text = "300 Song Ci brings the golden age of Chinese poetry to your pocket. Each poem is carefully translated and annotated for modern readers.",
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
