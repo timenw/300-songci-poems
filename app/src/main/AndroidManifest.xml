@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -12,6 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Poem300"
         tools:targetApi="34">
+
+        <!-- AdMob App ID (required for AdMob SDK) -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3940256099942544~3347511713" />
 
         <!-- 开屏页 - 设为启动页 -->
         <activity

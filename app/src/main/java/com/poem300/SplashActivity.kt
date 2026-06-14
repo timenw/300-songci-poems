@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
-import com.google.android.gms.ads.MobileAds
 
 class SplashActivity : Activity() {
 
@@ -17,15 +16,6 @@ class SplashActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d(TAG, "onCreate")
-
-        // 初始化 AdMob SDK（异步，不会阻塞）
-        try {
-            MobileAds.initialize(this) { status ->
-                Log.d(TAG, "AdMob initialized: $status")
-            }
-        } catch (e: Exception) {
-            Log.e(TAG, "AdMob init failed: ${e.message}")
-        }
 
         // 延迟 1.5 秒后跳转
         Handler(Looper.getMainLooper()).postDelayed({

@@ -113,7 +113,7 @@ dependencies {
     implementation("com.android.billingclient:billing-ktx:6.1.0")
 
     // Google AdMob
-    implementation("com.google.android.gms:play-services-ads:23.6.0")
+    implementation("com.google.android.gms:play-services-ads:22.6.0")
 
     // Lifecycle + ViewModel
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
