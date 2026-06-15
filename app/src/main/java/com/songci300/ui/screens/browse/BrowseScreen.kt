@@ -140,7 +140,7 @@ private fun FilterResultsView(
     val title = when (filterState) {
         is FilterState.Category -> "Theme: ${filterState.theme}"
         is FilterState.Author -> filterState.author
-        is FilterState.Dynasty -> "${filterState.dynasty} Dynasty"
+        is FilterState.Dynasty -> "${filterState.dynasty}代"
         is FilterState.Difficulty -> "Level ${filterState.level}"
     }
 
@@ -208,10 +208,10 @@ private fun ThemeFilterContent(
     onFilter: (String) -> Unit
 ) {
     val themes = listOf(
-        "Nature" to "\uD83C\uDF3F", "Love" to "\u2764\uFE0F", "Moon" to "\uD83C\uDF19", "Mountain" to "\u26F0\uFE0F",
-        "River" to "\uD83C\uDF0A", "Spring" to "\uD83C\uDF38", "Autumn" to "\uD83C\uDF42", "Winter" to "\u2744\uFE0F",
-        "Farewell" to "\uD83D\uDC4B", "Friendship" to "\uD83E\uDD1D", "War" to "\u2694\uFE0F", "Homesickness" to "\uD83C\uDFE0",
-        "Wine" to "\uD83C\uDF77", "Night" to "\uD83C\uDF19", "Philosophy" to "\uD83D\uDCAD", "History" to "\uD83D\uDCDC",
+        "春天" to "\uD83C\uDF38", "花" to "\uD83C\uDF3F", "月亮" to "\uD83C\uDF19", "山水" to "\u26F0\uFE0F",
+        "雨" to "\uD83C\uDF27", "风" to "\uD83C\uDF2C", "秋天" to "\uD83C\uDF42", "雪" to "\u2744\uFE0F",
+        "夜晚" to "\uD83C\uDF19", "离别" to "\uD83D\uDC4B", "思念" to "\uD83D\uDC95", "孤独" to "\uD83D\uDC64",
+        "宴饮" to "\uD83C\uDF77", "祝寿" to "\uD83C\uDF82", "柳" to "\uD83C\uDF32", "婉约" to "\uD83D\uDC96",
     )
 
     LazyColumn(
@@ -220,7 +220,7 @@ private fun ThemeFilterContent(
     ) {
         item {
             Text(
-                text = "Choose a theme",
+                text = "选择主题",
                 style = MaterialTheme.typography.titleMedium,
                 modifier = Modifier.padding(bottom = 8.dp)
             )
@@ -274,7 +274,7 @@ private fun PoetFilterContent(
     ) {
         item {
             Text(
-                text = "Poets",
+                text = "词人",
                 style = MaterialTheme.typography.titleMedium,
                 modifier = Modifier.padding(bottom = 8.dp)
             )
@@ -324,7 +324,7 @@ private fun DynastyFilterContent(
         items(dynasties) { dynasty ->
             val count = poems.count { it.dynastyEn == dynasty }
             ListItem(
-                headlineContent = { Text("$dynasty Dynasty") },
+                headlineContent = { Text("${dynasty}代") },
                 supportingContent = { Text("$count poems") },
                 trailingContent = {
                     Icon(Icons.Filled.ChevronRight, contentDescription = null)
